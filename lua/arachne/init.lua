@@ -10,10 +10,19 @@ M.new = function()
     local tags = {}
 
     vim.ui.input({prompt = "Enter title: "}, function(input) title = input end)
+    if title == nil then
+        print("The title is required.")
+        return
+    end
+    title = title.gsub(title, "%s+$", "")
+
     vim.ui.input({prompt = "Enter tags (comma separated): "},
                  function(input) raw_tags = input end)
-    for i in string.gmatch(raw_tags, "([^%s*,%s*]+)") do
-        table.insert(tags, i)
+
+    if raw_tags ~= nil then
+        for i in string.gmatch(raw_tags, "([^%s*,%s*]+)") do
+            table.insert(tags, i)
+        end
     end
 
     M.open(title, tags)
@@ -23,7 +32,7 @@ M.open = function(name, tags)
     local date_prefix = os.date("%Y-%m-%d")
 
     local normalized_name = string.lower(name)
-    normalized_name = string.gsub(normalized_name, " +", "-")
+    normalized_name = string.gsub(normalized_name, "%s+", "-")
 
     local file_tags = table.concat(tags, "_")
     local postfix = ""
