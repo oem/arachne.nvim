@@ -1,9 +1,13 @@
 M = {}
 
 -- User can set a notes directory that we can use here
-M.new = function(name, tags) end
+-- The fileformat should probably also be configurable, but we will start with markdown as default
+M.new = function(name, tags)
+    local date_prefix = os.date("%Y-%m-%d")
+    local file_tags = table.concat(tags, "_")
+    local file_name = date_prefix .. "--" .. name .. "__" .. file_tags .. ".md"
+end
 
 M.rename = function() end
 
-M.new("hello heya", {"hello", "you"})
 return M
