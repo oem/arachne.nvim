@@ -4,7 +4,20 @@ M.options = {}
 
 local defaults = {notes_directory = os.getenv("HOME") .. "/notes"}
 
-M.new = function() end
+M.new = function()
+    local title = ""
+    local raw_tags = ""
+    local tags = {}
+
+    vim.ui.input({prompt = "Enter title: "}, function(input) title = input end)
+    vim.ui.input({prompt = "Enter tags (comma separated): "},
+                 function(input) raw_tags = input end)
+    for i in string.gmatch(raw_tags, "([^%s*,%s*]+)") do
+        table.insert(tags, i)
+    end
+
+    M.open(title, tags)
+end
 
 M.open = function(name, tags)
     local date_prefix = os.date("%Y-%m-%d")
