@@ -9,8 +9,8 @@ M.new = function(name, tags)
     local file_tags = table.concat(tags, "_")
     local postfix = ""
     if file_tags ~= "" then postfix = "__" .. file_tags end
-
     local file_name = date_prefix .. "--" .. name .. postfix .. ".md"
+
     vim.cmd("e " .. M.options.notes_directory .. "/" .. file_name)
 end
 
