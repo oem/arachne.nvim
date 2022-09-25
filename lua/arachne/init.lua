@@ -25,10 +25,10 @@ M.new = function()
         end
     end
 
-    M.open(title, tags)
+    M._open(title, tags)
 end
 
-M.open = function(name, tags)
+M._open = function(name, tags)
     local date_prefix = os.date("%Y-%m-%d")
 
     local normalized_name = string.lower(name)
@@ -42,8 +42,6 @@ M.open = function(name, tags)
     vim.cmd("e " .. M.options.notes_directory .. "/" .. file_name)
     vim.api.nvim_put({"# " .. name}, "l", false, true)
 end
-
-M.rename = function() end
 
 M.setup = function(opts)
     M.options = vim.tbl_deep_extend("force", {}, defaults, opts or {})
