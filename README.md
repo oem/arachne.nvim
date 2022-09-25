@@ -18,6 +18,8 @@ An example note file might be named like this:
 
 long-term-storage is derived from the title you would provide, while public and thoughts are the tags.
 
+Check out the [scuffed video](https://asciinema.org/a/xUBiGs2XLoiIsi54sNOvOF0qq) if you want to see it in action :)
+
 ## Usage
 
 ### Install
