@@ -4,7 +4,7 @@ A very minimal, notetaking system for neovim.
 
 ## TL;DR
 
-Check out this [scuffed video](https://asciinema.org/a/523779) if you want to see it in action :)
+Check out this [scuffed video](https://asciinema.org/a/523779) if you want to see it in action (asciinema might have some trouble with the telescope dialog window :) ).
 
 A plugin that allows you to quickly capture notes, all the while not locking you into a system so that you can easily combine it with other tools.
 
