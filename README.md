@@ -4,6 +4,8 @@ A very minimal, notetaking system for neovim.
 
 ## TL;DR
 
+Check out this [scuffed video](https://asciinema.org/a/523779) if you want to see it in action :)
+
 A plugin that allows you to quickly capture notes, all the while not locking you into a system so that you can easily combine it with other tools.
 
 The notes are in the markdown format, but I might add options for other formats if there is any interest.
@@ -16,9 +18,7 @@ An example note file might be named like this:
 
 `2022-09-25--long-term-storage__public_thoughts.md`
 
-long-term-storage is derived from the title you would provide, while public and thoughts are the tags.
-
-Check out the [scuffed video](https://asciinema.org/a/xUBiGs2XLoiIsi54sNOvOF0qq) if you want to see it in action :)
+"long-term-storage" is derived from the title you would provide, while public and thoughts are the tags.
 
 ## Usage
 
