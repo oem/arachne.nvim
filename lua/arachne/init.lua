@@ -29,18 +29,23 @@ M.new = function()
 end
 
 M._open = function(name, tags)
+M._open = function(title, tags)
     local date_prefix = os.date("%Y-%m-%d")
+    local file_name = M._build_slug(date_prefix, title, tags)
+    vim.cmd("e " .. M.options.notes_directory .. "/" .. file_name)
+    vim.api.nvim_put({"# " .. title}, "l", false, true)
+end
 
-    local normalized_name = string.lower(name)
+M._build_slug = function(date, title, tags)
+    local normalized_name = string.lower(title)
     normalized_name = string.gsub(normalized_name, "%s+", "-")
 
     local file_tags = table.concat(tags, "_")
     local postfix = ""
     if file_tags ~= "" then postfix = "__" .. file_tags end
 
-    local file_name = date_prefix .. "--" .. normalized_name .. postfix .. ".md"
-    vim.cmd("e " .. M.options.notes_directory .. "/" .. file_name)
-    vim.api.nvim_put({"# " .. name}, "l", false, true)
+    local file_name = date .. "--" .. normalized_name .. postfix .. ".md"
+    return file_name
 end
 
 M.setup = function(opts)
