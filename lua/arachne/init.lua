@@ -4,6 +4,16 @@ M.options = {}
 
 local defaults = {notes_directory = os.getenv("HOME") .. "/notes"}
 
+local tags_to_text = function(tags, sep) return table.concat(tags, sep) end
+
+local text_to_tags = function(raw_tags)
+    local tags = {}
+    for i in string.gmatch(raw_tags, "([^%s*,%s*]+)") do
+        table.insert(tags, i)
+    end
+    return tags
+end
+
 M.new = function()
     local title = ""
     local raw_tags = ""
@@ -19,11 +29,7 @@ M.new = function()
     vim.ui.input({prompt = "Enter tags (comma separated): "},
                  function(input) raw_tags = input end)
 
-    if raw_tags ~= nil then
-        for i in string.gmatch(raw_tags, "([^%s*,%s*]+)") do
-            table.insert(tags, i)
-        end
-    end
+    if raw_tags ~= nil then tags = text_to_tags(raw_tags) end
 
     M._open(title, tags)
 end
