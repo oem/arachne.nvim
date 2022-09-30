@@ -49,6 +49,8 @@ use {
         setup = function()
             vim.keymap.set('n', '<leader>nn',
                     function() return require('arachne').new() end)
+            vim.keymap.set('n', '<leader>nr',
+                    function() return require('arachne').rename() end)
             end
 }
 ```
@@ -89,6 +91,14 @@ Will trigger the flow to create a new note.
 
 ```lua
 require('arachne').new()
+```
+
+*rename*
+
+Allows the renaming of the note, by providing a new title and tags (orreusing the old ones):
+
+```lua
+require('arachne').rename()
 ```
 
 ## Inspiration

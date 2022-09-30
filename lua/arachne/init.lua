@@ -34,7 +34,25 @@ M.new = function()
     M._open(title, tags)
 end
 
-M._open = function(name, tags)
+M.rename = function()
+    local current = vim.api.nvim_buf_get_name(0)
+    local date, title, tags = M._deconstruct_slug(current)
+
+    vim.ui.input({
+        prompt = "Enter title (press enter to reuse " .. title .. "): "
+    }, function(input) title = input or title end)
+
+    vim.ui.input({
+        prompt = "Enter tags (comma separated, press enter to reuse " ..
+            tags_to_text(tags, ',') .. "): "
+    }, function(input) if input ~= nil then tags = text_to_tags(input) end end)
+
+    local new_name = M._build_slug(date, title, tags)
+    new_name = M.options.notes_directory .. "/" .. new_name
+    os.rename(current, new_name)
+    vim.api.nvim_buf_set_name(0, new_name)
+end
+
 M._open = function(title, tags)
     local date_prefix = os.date("%Y-%m-%d")
     local file_name = M._build_slug(date_prefix, title, tags)
