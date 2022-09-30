@@ -54,6 +54,20 @@ M._build_slug = function(date, title, tags)
     return file_name
 end
 
+M._deconstruct_slug = function(filename)
+    local date, title, raw_tags = filename:match(
+                                      "(%d+-%d+-%d%d)--([^-].+)__(.+).md")
+    local tags = nil
+    if date == nil then date = os.date("%Y-%m-%d") end
+
+    if raw_tags ~= nil then
+        tags = {}
+        for i in raw_tags:gmatch("[^_]+") do table.insert(tags, i) end
+    end
+
+    return date, title, tags
+end
+
 M.setup = function(opts)
     M.options = vim.tbl_deep_extend("force", {}, defaults, opts or {})
 end
