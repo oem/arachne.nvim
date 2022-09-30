@@ -79,6 +79,18 @@ Keybind those two functions and you have a pretty powerful note retrieval system
 
 You can find a working example in my [dotfiles](https://github.com/oem/dotfiles/blob/main/neovim/.config/nvim/lua/config/telescope_setup.lua).
 
+### API
+
+Following functions are provided for your usage:
+
+*new*
+
+Will trigger the flow to create a new note.
+
+```lua
+require('arachne').new()
+```
+
 ## Inspiration
 
 The low-tech philosophy is loosely inspired by [denote.el](https://github.com/protesilaos/denote) and more generally by the unix philosophy of minimal and modular tools.
