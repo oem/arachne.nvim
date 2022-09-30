@@ -85,7 +85,7 @@ You can find a working example in my [dotfiles](https://github.com/oem/dotfiles/
 
 Following functions are provided for your usage:
 
-*new*
+**new**
 
 Will trigger the flow to create a new note.
 
@@ -93,9 +93,9 @@ Will trigger the flow to create a new note.
 require('arachne').new()
 ```
 
-*rename*
+**rename**
 
-Allows the renaming of the note, by providing a new title and tags (orreusing the old ones):
+Allows the renaming of the note, by providing a new title and tags (or reusing the old ones):
 
 ```lua
 require('arachne').rename()
