@@ -75,11 +75,11 @@ end
 M._deconstruct_slug = function(filename)
     local date, title, raw_tags = filename:match(
                                       "(%d+-%d+-%d%d)--([^-].+)__(.+).md")
-    local tags = nil
+    title = title or ""
+    local tags = {}
     if date == nil then date = os.date("%Y-%m-%d") end
 
     if raw_tags ~= nil then
-        tags = {}
         for i in raw_tags:gmatch("[^_]+") do table.insert(tags, i) end
     end
 
