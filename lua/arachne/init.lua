@@ -8,9 +8,9 @@ local defaults = {
 }
 
 local known_headings = {
-    md = { '---', 'title: <TITLE>' , '---' },
+    md = { '---', 'title: <TITLE>', '---' },
     org = {
-        '#+title:      <TITLE>' ,
+        '#+title:      <TITLE>',
         '#+date:       <DATE>',
         '#+filetags:   <TAGS>'
     },
@@ -37,15 +37,15 @@ M.new = function(file_extension)
     local raw_tags = ""
     local tags = {}
     file_extension = file_extension or M.options.file_extension
-    vim.ui.input({prompt = "Enter title: "}, function(input) title = input end)
+    vim.ui.input({ prompt = "Enter title: " }, function(input) title = input end)
     if title == nil then
         print("The title is required.")
         return
     end
     title = title.gsub(title, "%s+$", "")
 
-    vim.ui.input({prompt = "Enter tags (comma separated): "},
-                 function(input) raw_tags = input end)
+    vim.ui.input({ prompt = "Enter tags (comma separated): " },
+        function(input) raw_tags = input end)
 
     if raw_tags ~= nil then tags = text_to_tags(raw_tags) end
 
@@ -112,7 +112,7 @@ end
 
 M._deconstruct_slug = function(filename)
     local date, title, raw_tags, extension = filename:match(
-                                      "(%d+-%d+-%d%d)--([^-].+)__(.+)(%..+)$")
+        "(%d+-%d+-%d%d)--([^-].+)__(.+)(%..+)$")
     title = title or ""
     local tags = {}
     if date == nil then date = os.date("%Y-%m-%d") end
