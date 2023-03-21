@@ -7,21 +7,6 @@ local defaults = {
     file_extension = '.md',
 }
 
-local known_headings = {
-    md = { '---', 'title: <TITLE>', '---' },
-    org = {
-        '#+title:      <TITLE>',
-        '#+date:       <DATE>',
-        '#+filetags:   <TAGS>'
-    },
-    norg = {
-        '@document.meta',
-        'title: <TITLE>',
-        'created: <DATE>',
-        '@end'
-    },
-}
-
 local tags_to_text = function(tags, sep) return table.concat(tags, sep) end
 
 local text_to_tags = function(raw_tags)
@@ -81,6 +66,21 @@ M.rename = function()
 end
 
 M._open = function(title, tags, extension)
+    local known_headings = {
+        md = { '---', 'title: <TITLE>', '---' },
+        org = {
+            '#+title:      <TITLE>',
+            '#+date:       <DATE>',
+            '#+filetags:   <TAGS>'
+        },
+        norg = {
+            '@document.meta',
+            'title: <TITLE>',
+            'created: <DATE>',
+            '@end'
+        },
+    }
+
     local date_prefix = os.date("%Y-%m-%d")
     local file_name = M._build_slug(date_prefix, title, tags, extension)
     vim.cmd("e " .. M.options.notes_directory .. "/" .. file_name)
