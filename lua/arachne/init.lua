@@ -42,21 +42,24 @@ M.rename = function()
     local date, title, tags, extension = M._deconstruct_slug(current)
 
     vim.ui.input({
-        prompt = "Enter date <YYYY-MM-DD> (press enter to use " .. date .. "): "
-    }, function(input) date = input or date end)
+        prompt = "Enter date <YYYY-MM-DD>: ",
+        default = date
+    }, function(input) date = input end)
 
     vim.ui.input({
-        prompt = "Enter title (press enter to reuse " .. title .. "): "
-    }, function(input) title = input or title end)
+        prompt = "Enter title: ",
+        default = title
+    }, function(input) title = input end)
 
     vim.ui.input({
-        prompt = "Enter tags (comma separated, press enter to reuse " ..
-            tags_to_text(tags, ',') .. "): "
-    }, function(input) if input ~= nil then tags = text_to_tags(input) end end)
+        prompt = "Enter tags (comma separated): ",
+        default = tags_to_text(tags, ',')
+    }, function(input) tags = text_to_tags(input) end)
 
     vim.ui.input({
-        prompt = string.format("Enter extension (press enter to reuse %s): ", extension)
-    }, function(input) extension = input or extension end)
+        prompt = "Enter extension: ",
+        default = extension
+    }, function(input) extension = input end)
 
     local new_name = M._build_slug(date, title, tags, extension)
     new_name = M.options.notes_directory .. "/" .. new_name
